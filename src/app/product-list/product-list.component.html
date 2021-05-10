@@ -1,0 +1,35 @@
+<h2>Products</h2>
+
+<!-- 
+  有了 *ngFor，这个 <div> 就会被列表中的每个商品都重复渲染一次。
+  *ngFor 是一个 "结构型指令"。结构型指令会通过添加、删除和操纵它们的宿主元素等方式塑造或重塑 DOM 的结构。带有星号 * 的指令都是结构型指令。
+   -->
+<div *ngFor="let product of products">
+  <h3>
+    <!-- 插值语法 {{}}，显示商品 name 属性的值 -->
+    <!-- 给a标签使用属性绑定语法 [] 把该链接的 title 设置成该商品的名字 -->
+    <a [title]="product.name + ' details'">{{product.name}}</a>
+  </h3>
+
+  <!-- <p> 标签上使用 *ngIf 指令，这样 Angular 只会在当前商品有描述信息的情况下创建这个 <p> 元素 -->
+  <p *ngIf="product.description">
+    Description: {{ product.description }}
+    <!-- 最后一个商品没有描述信息。由于该商品的 description 属性为空，因此 Angular 不会创建 <p> 元素（包括静态文本 “Description”） -->
+  </p>
+
+  <!-- 通过把事件名称包裹在圆括号 () 中完成事件绑定 -->
+  <button (click)="share()">分享</button>
+
+  <!-- 
+  - *ngFor
+  - *ngIf
+  - 插值 {{}}
+  - 属性绑定 []
+  - 事件绑定 ()
+ -->
+
+  <app-product-alerts 
+  [product]="product" 
+  (notify)="onNotify()">
+  </app-product-alerts>
+</div>
