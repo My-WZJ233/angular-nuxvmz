@@ -8,7 +8,7 @@
   <h3>
     <!-- 插值语法 {{}}，显示商品 name 属性的值 -->
     <!-- 给a标签使用属性绑定语法 [] 把该链接的 title 设置成该商品的名字 -->
-    <a [title]="product.name + ' details'">{{product.name}}</a>
+    <a [title]="product.name + ' details'" [routerLink]="['/products', product.id]">{{product.name}}</a>
   </h3>
 
   <!-- <p> 标签上使用 *ngIf 指令，这样 Angular 只会在当前商品有描述信息的情况下创建这个 <p> 元素 -->
@@ -28,8 +28,6 @@
   - 事件绑定 ()
  -->
 
-  <app-product-alerts 
-  [product]="product" 
-  (notify)="onNotify()">
+  <app-product-alerts [product]="product" (notify)="onNotify()">
   </app-product-alerts>
 </div>
